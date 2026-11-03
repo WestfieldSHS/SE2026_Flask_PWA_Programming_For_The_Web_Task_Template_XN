@@ -1,0 +1,31 @@
+-- database: ../../database/data_source.db
+
+SELECT * FROM "table-name";
+CREATE TABLE species(
+    species_ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    scientific_name VARCHAR(100) NOT NULL UNIQUE, 
+    common_name VARCHAR(100) NOT NULL, 
+    phylum VARCHAR(50), 
+    class VARCHAR(50), 
+    hyperlink VARCHAR(512) NOT NULL, 
+    about TEXT NOT NULL, 
+    image VARCHAR(50) NOT NULL, 
+    conservation_status VARCHAR(50) DEFAULT 'Data Deficient');
+
+INSERT INTO species(
+    scientific_name, 
+    common_name, 
+    phylum, 
+    class, 
+    hyperlink, 
+    about, 
+    image, 
+    conservation_status) VALUES ( 
+    'Carcharhinus perezii',
+    'Caribbean Reef Shark',
+    'Chordata',
+    'Chonrichthytes',
+    'https://www.sharks.org/caribbean-reef-shark-carcharhinus-perezii',
+    'A heavy-bodied, classic looking shark with a short, rounded snout and large eyes. They are the apex predators of the Caribbedan coral reefs, that maintaining the health of reef ecosystems. Highly social and can frequently be seen cruising drop-offs or resting completely still on the ocean floor inside underwater caves.',
+    '/images/caribbean_reef_shark.jpg',
+    'Endangered')
