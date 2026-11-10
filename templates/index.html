@@ -1,18 +1,31 @@
-{% extends 'layout.html' %} {% block content %}
-<div class="container"></div>
-{% endblock %}
+{% extends 'layout.html' %} 
 
-{% for row in content %}
-<div class="card">
-  <img
-    class="card-image"
-    src="{{ row[4] }}"
-    alt="Product image for the {{ row[1] }} Sharks Around the World."
-  />
-  <h1 class="card-name">{{ row[1] }}</h1>
-  <p class="card-about">{{ row[3] }}</p>
-  <a class="card-link" href="{{ row[2] }}"
-    ><button class="btn">Read More</button></a
-  >
+{% block content %}
+<div class="container">
+  
+  {% for row in content %}
+  <div class="card">
+    <!-- row[7] is the image path/filename -->
+    <img
+      class="card-image"
+      src="{{ url_for('static', filename='images/' + row[7]) }}"
+      alt="Product image for the {{ row[2] }} Sharks Around the World."
+    />
+    <!-- row[2] is the Common Name -->
+    <h1 class="card-name">{{ row[2] }}</h1>
+    
+    <!-- Optional: Add row[1] if you want to show the Scientific Name too -->
+    <p class="card-scientific"><i>{{ row[1] }}</i></p>
+    
+    <!-- row[6] is the About section -->
+    <p class="card-about">{{ row[6] }}</p>
+    
+    <!-- row[5] is the Hyperlink -->
+    <a class="card-link" href="{{ row[5] }}" target="_blank">
+      <button class="btn">Read More</button>
+    </a>
+  </div>
+  {% endfor %}
+
 </div>
-{% endfor %}
+{% endblock %}

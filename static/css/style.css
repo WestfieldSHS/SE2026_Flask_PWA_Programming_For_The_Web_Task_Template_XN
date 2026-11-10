@@ -68,6 +68,7 @@ nav h1 {
   align-items: center;
   flex-direction: column;
   width: 17rem;
+  height: 100%;
   background: #fff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   border-radius: 10px;
@@ -77,8 +78,10 @@ nav h1 {
 
 .card-image {
   width: 100%;
-  height: 15rem;
+  height: 200px;
+  flex-shrink: 0;
   object-fit: cover;
+  object-position: center;
 }
 
 .card-name {
@@ -94,7 +97,7 @@ nav h1 {
   width: 15rem;
   white-space: nowrap;
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: auto; /*push everything below the button, 1rem change the button position base on the about text for ech shark, this keeps it clean'*/
 }
 
 .btn {
