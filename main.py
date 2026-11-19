@@ -35,17 +35,17 @@ def add():
             dbHandler.insertContact(email, name)
             #insert into database
 
-            return render_template('/add.html', is_done=True) 
+            return render_template('add.html', is_done=True) 
             # is_done=True tells Jinja2 to show success message
 
         except sqlite3.IntegrityError:
              #Duplicate email - show error message
              error_message = "This email address is already subscribed. Please use a different email."
-             return render_template('/add.html', error=error_message, email=email, name=name)
+             return render_template('add.html', error=error_message, email=email, name=name)
         
     else:
             #GET request - display empty form
-            return render_template('/add.html')
+            return render_template('add.html')
 
 
 if __name__ == '__main__':
