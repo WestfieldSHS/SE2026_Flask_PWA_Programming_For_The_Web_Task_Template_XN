@@ -28,6 +28,8 @@ def insertContact(email, name):
 
     con.commit()
     con.close() #Close databasew connection, otherwise changes will roll back
+    return (True, "Contact added successfully")
+    
 
 def deleteContact(email):
     con = sql.connect("database/data_source.db")
