@@ -7,6 +7,16 @@ def listShark():
     con.close()
     return data
 
+def listSpeciesByConservationStatus(conservation_status):
+  con = sql.connect("database/data_source.db")
+  cur = con.cursor()
+
+  data = cur.execute(
+      "SELECT * FROM species WHERE conservation_status = ?",
+      (conservation_status,),).fetchall()
+  con.close()
+  return data
+
 def insertContact(email, name):
     """
     Insert a new contact into the contact_list table.
@@ -44,3 +54,9 @@ def deleteContact(email):
 
 
     con.close() #close, even when there's an error happens
+
+def listSharkbystatus(conservation_status):
+    with sql.connect("database/data_source.db") as con:
+        cur = con.cursor()
+        data = cur.execute("SELECT * FROM species WHERE conservation_status = ?", (conservation_status,)).fetchall()
+    return data

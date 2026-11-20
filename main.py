@@ -7,6 +7,10 @@ app = Flask(__name__)
 @app.route('/index.html', methods=['GET'])     # Only GET - just viewing
 @app.route('/', methods=['POST', 'GET'])       # Both GET and POST - can handle forms
 def index():
+    
+    # Check if a conservation_status filter was passed in the URL
+    conservation_status = request.args.get("conservation_status")
+    
     # 1. Fetch shark data using database manager
     data = dbHandler.listShark()
     
@@ -46,7 +50,6 @@ def add():
     else:
             #GET request - display empty form
             return render_template('add.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
