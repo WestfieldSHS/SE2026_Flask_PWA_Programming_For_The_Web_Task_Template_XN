@@ -3,7 +3,8 @@ import sqlite3 as sql
 def listShark():
     con = sql.connect("database/data_source.db")
     cur = con.cursor()
-    data = cur.execute('SELECT * FROM species').fetchall()
+    cur.execute('SELECT * FROM species ORDER BY common_name COLLATE NOCASE ASC')
+    data = cur.fetchall()
     con.close()
     return data
 
@@ -11,9 +12,10 @@ def listSpeciesByConservationStatus(conservation_status):
   con = sql.connect("database/data_source.db")
   cur = con.cursor()
 
-  data = cur.execute(
-      "SELECT * FROM species WHERE conservation_status = ?",
-      (conservation_status,),).fetchall()
+  cur.execute(
+      "SELECT * FROM species WHERE conservation_status = ? ORDER BY common_name COLLATE NOCASE ASC",
+      (conservation_status,),)
+  data =cur.fetchall()
   con.close()
   return data
 

@@ -1,28 +1,31 @@
 const assets = [
   "/",
-  "static/css/style.css",
-  "static/js/app.js",
-  "static/images/logo.png",
-  "static/images/favicon.png",
-  "static/icons/icon-128x128.png",
-  "static/icons/icon-192x192.png",
-  "static/icons/icon-384x384.png",
-  "static/icons/icon-512x512.png",
+  "/explore",
+  "/add.html",
+  "/static/css/style.css",
+  "/static/js/app.js",
+  "/static/images/hero_divers.jpg",
+  "/static/images/logo.png",
+  "/static/images/favicon.png",
+  "/static/icons/icon-128x128.png",
+  "/static/icons/icon-192x192.png",
+  "/static/icons/icon-384x384.png",
+  "/static/icons/icon-512x512.png",
 ];
 
-const CATALOGUE_ASSETS = "catalogue-assets";
+const CATALOGUE_ASSETS = "catalogue-assets-v2";
 
 self.addEventListener("install", (installEvt) => {
   installEvt.waitUntil(
     caches
       .open(CATALOGUE_ASSETS)
       .then((cache) => {
-        console.log(cache);
-        cache.addAll(assets);
+        console.log("Caching assets:", cache);
+        return cache.addAll(assets);
       })
-      .then(self.skipWaiting())
+      .then(() => self.skipWaiting())
       .catch((e) => {
-        console.log(e);
+        console.log("Cache error:", e);
       })
   );
 });
@@ -34,8 +37,8 @@ self.addEventListener("activate", function (evt) {
       .then((keyList) => {
         return Promise.all(
           keyList.map((key) => {
-            if (key === CATALOGUE_ASSETS) {
-              console.log("Removed old cache from", key);
+            if (key !== CATALOGUE_ASSETS) {
+              console.log("Removed old cache:", key);
               return caches.delete(key);
             }
           })

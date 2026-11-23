@@ -1,28 +1,38 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="filter-buttons">
-  <a href="/" class="filter-btn">All</a>
-  <a href="/?conservation_status=Endangered" class="filter-btn">Endangered</a>
-  <a href="/?conservation_status=Vulnerable" class="filter-btn">Vulnerable</a>
-  <a href="/?conservation_status=Near%20Threatened" class="filter-btn">Near Threatened</a>
-   <a href="/?conservation_status=Least%20Concern" class="filter-btn">Least Concern</a>
-</div>
-
-<div class="container">
-  {% for row in content %}
-  <div class="card">
-    <img
-      class="card-image"
-      src="/static/images/{{ row[7] }}"
-      alt="Image of {{ row[2] }}"
-    />
-    <h1 class="card-name">{{ row[2] }}</h1>
-    <p class="card-scientific"><em>{{ row[1] }}</em></p>
-    <p class="card-about">{{ row[6] }}</p>
-    <a class="card-link" href="{{ row[5] }}" target="_blank">
-      <button class="btn">Read More</button>
-    </a>
+<div class="page-wrapper">
+  <div class="filter-buttons">
+    <a href="/explore" class="filter-btn">All</a>
+    <a href="/explore?conservation_status=Endangered" class="filter-btn">Endangered</a>
+    <a href="/explore?conservation_status=Vulnerable" class="filter-btn">Vulnerable</a>
+    <a href="/explore?conservation_status=Near%20Threatened" class="filter-btn">Near Threatened</a>
+    <a href="/explore?conservation_status=Least%20Concern" class="filter-btn">Least Concern</a>
   </div>
-  {% endfor %}
+
+ 
+  <!-- Apple-style Floating A-Z Scrubber Rail -->
+  <aside class="alpha-index" id="alphaIndex" aria-label="Alphabetical index">
+    {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+    <button type="button" class="alpha-letter" data-target="{{ letter }}">{{ letter }}</button>
+    {% endfor %}
+  </aside>
+
+  <div class="container" id="sharkGrid">
+    {% for row in content %}
+    <div class="card" data-letter="{{ row[2][0] | upper }}">
+      <img
+        class="card-image"
+        src="/static/images/{{ row[7] }}"
+        alt="Image of {{ row[2] }}"
+      />
+      <h2 class="card-name">{{ row[2] }}</h2>
+      <p class="card-scientific"><em>{{ row[1] }}</em></p>
+      <p class="card-about">{{ row[6] }}</p>
+      <a class="card-link" href="{{ row[5] }}" target="_blank" rel="noopener noreferrer">
+        <button class="btn">Read More</button>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}

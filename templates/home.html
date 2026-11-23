@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="home-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Our Oceans.<br>Explore the Mystery.</h1>
+      <hr class="hero-divider">
+      <p>Discover the magnificent side of the world—from deep-water predators to coastal icons and their conservation status.</p>
+    </div>
+  </section>
+
+  <!-- Featured Species Section -->
+  <section class="featured-section">
+    <div class="section-header">
+      <h2>Underwater.</h2>
+      <p class="section-subtitle">Featured species from our shared planet</p>
+    </div>
+
+    <div class="featured-grid">
+      {% for shark in featured %}
+      <a href="{{ shark[5] }}" target="_blank" rel="noopener noreferrer" class="featured-card" style="background-image: url('/static/images/{{ shark[7] }}');">
+        <div class="card-overlay">
+          <span class="card-status">{{ shark[8] }}</span>
+          <h3>{{ shark[2] }}.</h3>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="cta-container">
+      <a href="/explore" class="view-all-link">VIEW ALL SPECIES &rarr;</a>
+    </div>
+  </section>
+</div>
+{% endblock %}
