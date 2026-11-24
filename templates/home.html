@@ -11,27 +11,47 @@
     </div>
   </section>
 
-  <!-- Featured Species Section -->
+    <!-- Marine Categories Section -->
   <section class="featured-section">
     <div class="section-header">
       <h2>Underwater.</h2>
-      <p class="section-subtitle">Featured species from our shared planet</p>
+      <p class="section-subtitle">Explore marine life by group across our shared ocean</p>
     </div>
 
     <div class="featured-grid">
-      {% for shark in featured %}
-      <a href="{{ shark[5] }}" target="_blank" rel="noopener noreferrer" class="featured-card" style="background-image: url('/static/images/{{ shark[7] }}');">
-        <div class="card-overlay">
-          <span class="card-status">{{ shark[8] }}</span>
-          <h3>{{ shark[2] }}.</h3>
+      <!-- Category 1: Sharks -->
+      <a href="/explore?category=shark" class="category-card">
+        <div class="category-icon-wrap">
+          <img src="/static/images/shark_icon.png" alt="Sharks icon" class="category-icon" />
         </div>
+        <span class="card-status">Elasmobranchii</span>
+        <h3>Sharks.</h3>
+        <p class="category-desc">Apex predators &amp; deep-sea cartilaginous species.</p>
       </a>
-      {% endfor %}
+
+      <!-- Category 2: Jellyfish -->
+      <a href="/explore?category=jellyfish" class="category-card">
+        <div class="category-icon-wrap">
+          <img src="/static/images/jellyfish_icon.png" alt="Jellyfish icon" class="category-icon" />
+        </div>
+        <span class="card-status">Cnidaria</span>
+        <h3>Jellyfish.</h3>
+        <p class="category-desc">Bioluminescent drifters &amp; pelagic cnidarians.</p>
+      </a>
+
+      <!-- Category 3: Future Expansion -->
+      <a href="/explore" class="category-card coming-soon">
+        <div class="category-icon-wrap">
+          <img src="/static/images/coral_icon.png" alt="Corals and more icon" class="category-icon" />
+        </div>
+        <span class="card-status">Coming Soon</span>
+        <h3>Corals &amp; More.</h3>
+        <p class="category-desc">Reef builders, bony fish &amp; cephalopods.</p>
+      </a>
     </div>
 
     <div class="cta-container">
-      <a href="/explore" class="view-all-link">VIEW ALL SPECIES &rarr;</a>
+      <a href="/explore" class="view-all-link">VIEW ALL MARINE SPECIES &rarr;</a>
     </div>
   </section>
-</div>
 {% endblock %}

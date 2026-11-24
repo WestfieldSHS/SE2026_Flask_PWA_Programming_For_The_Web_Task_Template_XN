@@ -553,3 +553,196 @@ body {
     width: 16px;
   }
 }
+
+/* =========================================
+   SEARCH BAR (/explore)
+   ========================================= */
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 540px;
+  margin: 0 auto 1.5rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  background: #0c1d3d;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.25s ease;
+}
+
+.search-input::placeholder {
+  color: #64748b;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #14e6dd;
+}
+
+.search-btn {
+  padding: 0.7rem 1.4rem;
+  background: #14e6dd;
+  color: #061128;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.search-btn:hover {
+  opacity: 0.9;
+}
+
+.clear-search-btn {
+  padding: 0.7rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.clear-search-btn:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.no-results {
+  padding: 3rem 1rem;
+  color: #94a3b8;
+}
+
+.no-results p {
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+}
+
+/* =========================================
+   EMPTY SEARCH / NO RESULTS STATE
+   ========================================= */
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 1.5rem 5rem;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.no-results-img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  /* Turns a dark navy silhouette crisp white/teal so it pops on #061128 */
+  filter: brightness(0) invert(1) opacity(0.85);
+  animation: diverFloat 3.5s ease-in-out infinite;
+}
+
+.no-results h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.no-results p {
+  max-width: 440px;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+@keyframes diverFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+}
+
+/* =========================================
+   CATEGORY ICON CARDS (home.html)
+   ========================================= */
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.75rem 1.75rem;
+  background: linear-gradient(145deg, #0c1d3d 0%, #08142c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  border-color: #14e6dd;
+  box-shadow: 0 20px 40px rgba(20, 230, 221, 0.16);
+}
+
+.category-icon-wrap {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  background: #0c1d3d;
+  border: 1px solid rgba(20, 230, 221, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.category-card:hover .category-icon-wrap {
+  transform: scale(1.06);
+  border-color: #14e6dd;
+}
+
+.category-icon {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  /* Flips black silhouette to white and erases the white square background */
+  filter: invert(1);
+  mix-blend-mode: screen;
+  transform: scale(1.65);
+}
+
+.category-card h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.category-desc {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-width: 230px;
+}
+
+.category-card:hover .category-icon {
+  filter: invert(1) drop-shadow(0 0 8px rgba(20, 230, 221, 0.7));
+}

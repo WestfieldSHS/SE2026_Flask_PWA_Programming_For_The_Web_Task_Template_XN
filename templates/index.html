@@ -1,15 +1,37 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="page-wrapper">
+
+  <!-- 1. Search Bar -->
+  <form action="/explore" method="GET" class="search-form">
+    {% if active_status and active_status != 'All' %}
+    <input type="hidden" name="conservation_status" value="{{ active_status }}" />
+    {% endif %}
+    <input
+      type="text"
+      name="q"
+      class="search-input"
+      placeholder="Search by common or scientific name..."
+      value="{{ search_query or '' }}"
+      aria-label="Search sharks"
+    />
+    <button type="submit" class="search-btn">Search</button>
+    {% if search_query %}
+    <a href="/explore?conservation_status={{ active_status }}" class="clear-search-btn">Clear</a>
+    {% endif %}
+  </form>
+
+  <!-- 2. Conservation Filter Buttons -->
   <div class="filter-buttons">
-    <a href="/explore" class="filter-btn">All</a>
-    <a href="/explore?conservation_status=Endangered" class="filter-btn">Endangered</a>
-    <a href="/explore?conservation_status=Vulnerable" class="filter-btn">Vulnerable</a>
-    <a href="/explore?conservation_status=Near%20Threatened" class="filter-btn">Near Threatened</a>
-    <a href="/explore?conservation_status=Least%20Concern" class="filter-btn">Least Concern</a>
+    <a href="/explore?q={{ search_query or '' }}" class="filter-btn {% if active_status == 'All' %}active{% endif %}">All</a>
+    <a href="/explore?conservation_status=Endangered&q={{ search_query or '' }}" class="filter-btn {% if active_status == 'Endangered' %}active{% endif %}">Endangered</a>
+    <a href="/explore?conservation_status=Vulnerable&q={{ search_query or '' }}" class="filter-btn {% if active_status == 'Vulnerable' %}active{% endif %}">Vulnerable</a>
+    <a href="/explore?conservation_status=Near%20Threatened&q={{ search_query or '' }}" class="filter-btn {% if active_status == 'Near Threatened' %}active{% endif %}">Near Threatened</a>
+    <a href="/explore?conservation_status=Least%20Concern&q={{ search_query or '' }}" class="filter-btn {% if active_status == 'Least Concern' %}active{% endif %}">Least Concern</a>
   </div>
 
- 
+  <!-- 3. Shark Grid OR Scuba Diver Empty State -->
+  {% if content %}
   <!-- Apple-style Floating A-Z Scrubber Rail -->
   <aside class="alpha-index" id="alphaIndex" aria-label="Alphabetical index">
     {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
@@ -34,5 +56,24 @@
     </div>
     {% endfor %}
   </div>
+  {% else %}
+  <div class="no-results">
+    <img
+      src="/static/images/diver_searching.png"
+      alt="Scuba diver searching"
+      class="no-results-img"
+    />
+    <h3>We're looking for that species</h3>
+    <p>
+      {% if search_query %}
+        We couldn't find any matches for "<strong>{{ search_query }}</strong>" in our ocean database yet.
+      {% else %}
+        No species match the selected conservation filter right now.
+      {% endif %}
+    </p>
+    <a href="/explore" class="btn">Reset Search</a>
+  </div>
+  {% endif %}
+
 </div>
 {% endblock %}

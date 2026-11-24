@@ -19,6 +19,3 @@ VALUES (
     'moon_jellyfish.jpg',
     'Least Concern'
 )
-
-SELECT * FROM contact_list
-WHERE email = 'test1@example.com';

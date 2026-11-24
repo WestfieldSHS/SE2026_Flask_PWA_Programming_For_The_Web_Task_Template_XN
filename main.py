@@ -12,17 +12,19 @@ def home():
 @app.route('/explore', methods=['GET', 'POST'])
 @app.route('/index.html', methods=['GET', 'POST'])
 def index():
-    # Check if a conservation_status filter was passed in the URL
-    conservation_status = request.args.get("conservation_status")
+    category = request.args.get("category", "all")
+    conservation_status = request.args.get("conservation_status", "All")
+    search_query = request.args.get("q", "").strip()
 
-    if conservation_status and conservation_status != "All":
-        data = dbHandler.listSpeciesByConservationStatus(conservation_status)
-    else:
-        # 1. Fetch shark data using database manager
-        data = dbHandler.listShark()
+    data = dbHandler.getSpecies(category, conservation_status, search_query)
 
-    # 2. Pass it into the template under the variable name 'content'
-    return render_template('index.html', content=data)
+    return render_template(
+        'index.html',
+        content=data,
+        active_category=category,
+        active_status=conservation_status,
+        search_query=search_query
+    )
 
 @app.route('/add.html', methods=['POST', 'GET'])
 def add():
