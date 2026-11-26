@@ -19,3 +19,27 @@ VALUES (
     'moon_jellyfish.jpg',
     'Least Concern'
 )
+
+INSERT INTO species (
+    scientific_name,
+    common_name,
+    phylum,
+    class,
+    hyperlink,
+    about,
+    image,
+    conservation_status,
+    category
+
+) 
+VALUES (
+    'Stygiomedusa gigantea',
+    'Giant Phantom Jellyfish',
+    'Cinidaria',
+    'Scyphozoa',
+    'https://www.mbari.org/animal/giant-phantom-jelly/',
+    'The giant phantom jellyfish is an elusive deep-sea species found across all oceans except the Arctic, typically inhabiting the midnight zone down to 6,700 meters. Lacking stinging tentacles, it features a wide, translucent reddish-orange bell over 1 meter across and four ribbon-like oral arms up to 10 meters long used to trap plankton and small fish.',
+    'giant_phantom_jellyfish.png',
+    'Least Concern',
+    'jellyfish'
+)

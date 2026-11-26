@@ -6,8 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    featured_sharks = dbHandler.listShark()[:3]
-    return render_template('home.html', featured=featured_sharks)
+    return render_template('home.html')
 
 @app.route('/explore', methods=['GET', 'POST'])
 @app.route('/index.html', methods=['GET', 'POST'])
